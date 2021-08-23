@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import './App.css';
 
 interface IProps {}
@@ -8,12 +8,23 @@ interface IState {
 
 class App extends React.Component<IProps, IState> {
   interval : any;
+  birthday = this.getNextBirthday();
 
   constructor(props : IProps) {
     super(props);
     this.state = {
       time: Date.now()
     };
+  }
+
+  getNextBirthday() {
+    const curYear = new Date(Date.now()).getFullYear();
+    var birthday = new Date(curYear, 7, 24);
+
+    if (birthday.getTime() - Date.now() < 0) {
+       birthday = new Date(curYear + 1, 7, 24)
+    }
+    return birthday;
   }
 
   componentDidMount() {
@@ -23,10 +34,8 @@ class App extends React.Component<IProps, IState> {
     clearInterval(this.interval);
   }
   
-  getDateDiff() {
-    var birthday = new Date("08/24/2021");
-    
-    var delta = Math.abs(birthday.getTime() - this.state.time) / 1000;
+  getDateDiff() {    
+    var delta = Math.abs(this.birthday.getTime() - this.state.time) / 1000;
     var days = Math.floor(delta / 86400);
     delta -= days * 86400;
     var hours = Math.floor(delta / 3600) % 24;
@@ -39,7 +48,17 @@ class App extends React.Component<IProps, IState> {
     return text;
   }
 
+  isToday(someDate : Date) {
+    const today = new Date()
+    return someDate.getDate() === today.getDate() &&
+      someDate.getMonth() === today.getMonth()
+  }    
+
   render() {
+    var text = this.getDateDiff();
+    if (this.isToday(this.birthday)) {
+      text = "It's TODAY!! Happy Birthday Shivani!!"
+    }
     return (
       <div className="App">
         <header className="App-header">
@@ -47,15 +66,12 @@ class App extends React.Component<IProps, IState> {
             Countdown to Shivani's Birthday
           </p>
           <p>
-            {this.getDateDiff()}
+            {text}
           </p>
         </header>
       </div>
     );
   }
-
-
-  
 }
 
 export default App;
