@@ -1,8 +1,14 @@
 import React from 'react';
 import './App.css';
+import shivani1 from "./photos/1.jpg";
+import shivani2 from "./photos/2.jpg";
 import shivani3 from "./photos/3.jpg";
+import shivani3a from "./photos/3a.jpg";
 import shivani4 from "./photos/4.jpg";
 import shivani5 from "./photos/5.jpg";
+import shivani6 from "./photos/6.jpg";
+import shivani7 from "./photos/7.jpg";
+import shivani9 from "./photos/9.jpg";
 import shivani11 from "./photos/11.jpg";
 import shivani13 from "./photos/13.jpg";
 import shivani14 from "./photos/14.jpg";
@@ -103,7 +109,7 @@ interface IPhotoState {
 class PhotoViewer extends React.Component<{}, IPhotoState>  {
 
   interval : any;
-  photos = [shivani3,shivani4,shivani5,shivani11,shivani13,shivani14,shivani15,shivani16,shivani17,shivani18,shivani19,shivani20];
+  photos = [shivani1,shivani2,shivani3,shivani3a,shivani4,shivani5,shivani6,shivani7,shivani9,shivani11,shivani13,shivani14,shivani15,shivani16,shivani17,shivani18,shivani19,shivani20];
 
   constructor(props : any) {
     super(props);
